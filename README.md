@@ -1,4 +1,3 @@
 # NECos
-NECos JavaScript Discord Bot
 
-your mom ecksdee
+NECos is currently in development. stay tuned until it is finished.
