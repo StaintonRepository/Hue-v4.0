@@ -28,6 +28,17 @@ module.exports = (NECos) => {
 					return true;
 				} else return false;
 			}
-		}
+		},
+		loadEvent: (name) => {
+			const handlers = fs.readdirSync("./src/modules/events/handlers");
+			for(const filename of handlers){
+				const envName = filename.split(".")[0];
+				if(envName == name){
+					const event = require(`./handlers/${filename}`);
+					NECos.on(envName, event.bind(null, NECos));
+					return true;
+				} else return false;
+			}
+		},
 	}
 }
