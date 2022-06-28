@@ -1,0 +1,15 @@
+{
+  "name": "necos-js",
+  "version": "1.0.0",
+  "description": "NECos JavaScript-based Discord bot",
+  "main": "./src/NECos.js",
+  "repository": "https://github.com/Nuclear-Engineering-Co/NECos",
+  "author": "imskyyc & Anthonycanada",
+  "license": "Apache-2.0",
+  "private": false,
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "discord.js": "^13.8.1",
+    "mysql2": "^2.3.3"
+  }
+}
