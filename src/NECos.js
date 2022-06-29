@@ -20,6 +20,7 @@ NECos.Modules = new Map();
 
 const modulesFolder = fs.readdirSync("./src/modules");
 for(const filename of modulesFolder){
+	console.log("Loading module: " + filename);
 	const modName = filename.split(".")[0];
 	const mod = require(`./modules/${filename}`)(NECos);
 	NECos.Modules.set(modName, mod);

@@ -10,4 +10,5 @@ module.exports = (client) => {
 		client.user.setActivity(client.activeStatus, {type: "PLAYING"});
 	}, 3600000);
 	console.log(`Logged On As: ${client.user.tag}, | NECos JS v2.0.`);
+	client.Modules.get("cli").prompt();
 };
