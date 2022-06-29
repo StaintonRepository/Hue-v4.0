@@ -10,6 +10,11 @@
   "dependencies": {
     "bluebird": "^3.7.2",
     "discord.js": "^13.8.1",
-    "mysql2": "^2.3.3"
+    "dotenv": "^16.0.1",
+    "mysql2": "^2.3.3",
+    "toml": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.18.0"
   }
 }

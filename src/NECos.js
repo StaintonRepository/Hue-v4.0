@@ -1,4 +1,10 @@
+/*
+	Before you run the bot make sure you have a ".env" file with 'TOKEN = "insert token here" ' to prevent running into errors
+*/
+
+/* eslint-disable no-unused-vars */
 const { Client, Intents } = require("discord.js");
+const { config } = require("dotenv"); config();
 const fs = require("fs");
 
 const NECos = new Client({
@@ -7,7 +13,7 @@ const NECos = new Client({
 		// incase we want to just parse it through the bot. 
 		// parse: ["everyone", "roles"]
 	}
-})
+});
 
 // Load the modules.
 NECos.Modules = new Map();
@@ -19,3 +25,4 @@ for(const filename of modulesFolder){
 	NECos.Modules.set(modName, mod);
 }
 
+NECos.login(process.env.TOKEN);

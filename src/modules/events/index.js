@@ -13,11 +13,11 @@ module.exports = (NECos) => {
 	loadEvents();
 	// return 
 	return {
-		removeEvent: (name) => {
+		remove: (name) => {
 			NECos.removeAllListeners(name);
 		},
-		loadAllEvents: loadEvents,
-		reloadEvent: (name) => {
+		loadAll: loadEvents,
+		reload: (name) => {
 			const handlers = fs.readdirSync("./src/modules/events/handlers");
 			for(const filename of handlers){
 				const envName = filename.split(".")[0];
@@ -29,7 +29,7 @@ module.exports = (NECos) => {
 				} else return false;
 			}
 		},
-		loadEvent: (name) => {
+		load: (name) => {
 			const handlers = fs.readdirSync("./src/modules/events/handlers");
 			for(const filename of handlers){
 				const envName = filename.split(".")[0];
@@ -40,5 +40,5 @@ module.exports = (NECos) => {
 				} else return false;
 			}
 		},
-	}
-}
+	};
+};
