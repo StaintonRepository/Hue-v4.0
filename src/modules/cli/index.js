@@ -10,7 +10,7 @@ module.exports = (NECos) => {
 			console.log(`Running command: ${cmd}`);
 		},
 		prompt: () => {
-			rl.question(">> ", (answer) => {
+			rl.question("", (answer) => {
 				const cmd = answer.split(" ")[0];
 				const args = answer.split(" ").slice(1);
 				functions.run(cmd, args);
