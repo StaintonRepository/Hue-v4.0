@@ -5,6 +5,7 @@
 /* eslint-disable no-unused-vars */
 const { Client, Intents } = require("discord.js");
 const { config } = require("dotenv"); config();
+require('toml-require').install();
 const fs = require("fs");
 
 const NECos = new Client({
@@ -14,7 +15,7 @@ const NECos = new Client({
 		// parse: ["everyone", "roles"]
 	}
 });
-
+NECos.Configuration = require("../configuration.toml");
 // Load directly the logger because thats important lol!
 NECos.Logger = require("./modules/Logger")(NECos);
 
