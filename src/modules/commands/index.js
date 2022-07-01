@@ -1,2 +1,4 @@
 /* eslint-disable no-unused-vars */
-module.exports = (NECos) => {};
+module.exports = (NECos) => {
+	
+};

@@ -1,0 +1,15 @@
+[Client]
+# There is a couple ways to define a bot administrator.
+# 1. you bind it to a role by doing "#[GUILD_ID]-&[ROLE_ID]". For say a bot developer role.
+# 2. bind it to a user by doing "@[USER_ID]". For individual users.
+# 3. bind it to an entire server by doing "#[GUILD_ID]". For the entire server in say like a private developer server
+BOT_ADMINISTRATION = [ 
+	"#[GUILD_ID]-&[ROLE_ID]",
+	"@[USER_ID]",
+	"#[GUILD_ID]"
+]
+
+[Database]
+URL = "DatabaseURL"
+USERNAME = "DatabaseUsername"
+PASSWORD = "DatabasePassword"
