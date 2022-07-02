@@ -1,20 +1,39 @@
 const fs = require("fs");
 module.exports = (NECos) => {
-	// Do a interval because I find after a while the status likes to fuck off for no reason
-	NECos.activeStatus = `${NECos.user.username}`;
+	NECos.randomStatus = [
+		"NEKOPARA Vol. 1",
+		"Minecraft",
+		"Roblox",
+		"with a firearm.",
+		"Energetic Sandbox",
+		"with a dog",
+		"dead",
+	];
 
-	NECos.user.setActivity(NECos.activeStatus, {type: "PLAYING"});
+	// Do a interval because I find after a while the status likes to fuck off for no reason
+	NECos.activeStatus = NECos.randomStatus[Math.floor(Math.random() * NECos.randomStatus.length)];
+
+	NECos.minutesPerStatus = 5;
+
+	let gitCommitHead = "Unknown";
+	fs.readFile("./.git/FETCH_HEAD", "utf8", (err, data) =>{
+		gitCommitHead = data.slice(0,8);
+		NECos.user.setActivity(`${NECos.activeStatus} | git ${gitCommitHead}`, {type: "PLAYING"});
+	});
+
+
+	NECos.user.setActivity(`${NECos.activeStatus} | git ${gitCommitHead}`, {type: "PLAYING"});
 	setInterval(function(){
-		NECos.user.setActivity(NECos.activeStatus, {type: "PLAYING"});
-	}, 3600000);
+		NECos.user.setActivity(`${NECos.activeStatus} | git ${gitCommitHead}`, {type: "PLAYING"});
+	}, NECos.minutesPerStatus * 6000);
 	NECos.Logger.ready(`Logged On As: ${NECos.user.tag}, | NECos JS v2.0.`);
 	NECos.Modules.get("cli").prompt();
 
 	// Read the configuration and parse who the bot administrators are.
-	const data = NECos.Configuration.Client.BOT_ADMINISTRATION
-	NECos.Administration = []
+	const data = NECos.Configuration.Client.BOT_ADMINISTRATION;
+	NECos.Administration = [];
 	if(data){
-		if(data.length <= 0) NECos.Logger.warn("There are no bot administrators configured in the configuration")
+		if(data.length <= 0) NECos.Logger.warn("There are no bot administrators configured in the configuration");
 		else {
 			for(const a of data){
 				if(typeof(a) == "string"){
@@ -28,21 +47,25 @@ module.exports = (NECos) => {
 							const guild = NECos.guilds.cache.get(guildId);
 							if(guild){
 								guild.members.cache.forEach(member => {
-									NECos.Administration.push(member.user.id)
-								})
-							}else NECos.Logger.warn("NECos attempted to access a guild which it didn't have access to.")
+									NECos.Administration.push(member.user.id);
+								});
+							}else NECos.Logger.warn("NECos attempted to access a guild which it didn't have access to.");
 						}else{
 							// Role
 							const guildId = b[0].replace("#","");
+							const roleId = b[1].replace("&","");
+							
 							const guild = NECos.guilds.cache.get(guildId);
 							if(guild){
-
-							}else NECos.Logger.warn("NECos attempted to access a guild which it didn't have access to.")
+								guild.members.cache.forEach(member => {
+									if(member._roles.includes(roleId)) NECos.Administration.push(member.user.id);
+								});
+							}else NECos.Logger.warn("NECos attempted to access a guild which it didn't have access to.");
 						}
 					}
 				}
 			}
 		} 
-	}else NECos.Logger.warn("The bot administrators key in the configuration was unable to be read.")
+	}else NECos.Logger.warn("The bot administrators key in the configuration was unable to be read.");
 
 };

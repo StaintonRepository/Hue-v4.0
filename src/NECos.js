@@ -1,11 +1,9 @@
 /*
 	Before you run the bot make sure you have a ".env" file with 'TOKEN = "insert token here" ' to prevent running into errors
 */
-
-/* eslint-disable no-unused-vars */
-const { Client, Intents } = require("discord.js");
+const { Client } = require("discord.js");
 const { config } = require("dotenv"); config();
-require('toml-require').install();
+require("toml-require").install();
 const fs = require("fs");
 
 const NECos = new Client({
