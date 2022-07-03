@@ -13,7 +13,7 @@ module.exports = (NECos) => {
 					let text = eval(args);
 					if (text && text.constructor.name == "Promise") text = await text;
 					if (typeof text !== "string")
-					text = require("util").inspect(text, { depth: 1 });
+						text = require("util").inspect(text, { depth: 1 });
 
 					text = text
 						.replace(/`/g, "`" + String.fromCharCode(8203))

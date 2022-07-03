@@ -1,13 +1,12 @@
 module.exports = (NECos) => {
 	class Command {
-		constructor(name, description, args, aliases, category, cooldown, enabled, run) {
+		constructor(name, description, args, category, enabled, forceEnabled, run) {
 			this.name = name;
 			this.description = description;
 			this.args = args;
-			this.aliases = aliases;
 			this.category = category;
-			this.cooldown = cooldown;
 			this.enabled = enabled;
+			this.forceEnabled = forceEnabled;
 			this.run = run;
 		}
 	}
@@ -19,4 +18,4 @@ module.exports = (NECos) => {
 			return NECos.Commands.cache.get(name);
 		}
 	};
-}
+};
