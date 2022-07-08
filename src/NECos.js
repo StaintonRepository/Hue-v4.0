@@ -6,27 +6,27 @@ const { config } = require("dotenv"); config();
 require("toml-require").install();
 const fs = require("fs");
 
-const NECos = new Client({
+const client = new Client({
 	intents: ["DIRECT_MESSAGES", "GUILDS", "GUILD_BANS", "GUILD_INTEGRATIONS", "GUILD_MEMBERS", "GUILD_MESSAGES"],
 	allowedMentions: {
 		// incase we want to just parse it through the bot. 
 		// parse: ["everyone", "roles"]
 	}
 });
-NECos.Configuration = require("../configuration.toml");
+client.Configuration = require("../configuration.toml");
 // Load directly the logger because thats important lol!
-NECos.Logger = require("./modules/Logger")(NECos);
+client.Logger = require("./modules/Logger")(client);
 
 // Load the modules.
-NECos.Modules = new Map();
+client.Modules = new Map();
 
 const modulesFolder = fs.readdirSync("./src/modules");
 for(const filename of modulesFolder){
-	NECos.Logger.log("Loading module: " + filename);
+	client.Logger.log("Loading module: " + filename);
 	const modName = filename.split(".")[0];
-	const mod = require(`./modules/${filename}`)(NECos);
-	NECos.Modules.set(modName, mod);
+	const mod = require(`./modules/${filename}`)(client);
+	client.Modules.set(modName, mod);
 }
 
 // Login to the bot (if this parts errors create a .env and add TOKEN = "insert token here" )
-NECos.login(process.env.TOKEN);
+client.login(process.env.TOKEN);

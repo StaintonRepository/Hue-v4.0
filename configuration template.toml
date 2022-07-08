@@ -10,6 +10,9 @@ BOT_ADMINISTRATION = [
 	"#[GUILD_ID]"
 ]
 
+[Channels]
+LOGS = "Channel ID"
+
 [Database]
 URL = "DatabaseURL"
 USERNAME = "DatabaseUsername"

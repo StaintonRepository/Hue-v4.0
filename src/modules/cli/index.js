@@ -4,7 +4,7 @@ const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout
 });
-module.exports = (NECos) => {
+module.exports = (client) => {
 	const functions = {
 		run: async (cmd, args) => {
 			// temp eval cmd because I am lazy.
@@ -18,12 +18,12 @@ module.exports = (NECos) => {
 					text = text
 						.replace(/`/g, "`" + String.fromCharCode(8203))
 						.replace(/@/g, "@" + String.fromCharCode(8203))
-						.replace(NECos.token, "ooga booga");
+						.replace(client.token, "ooga booga");
 
 					console.log(text);
 				}
 				catch(e){
-					NECos.Logger.error(e);
+					client.Logger.error(e);
 				}
 			}
 
