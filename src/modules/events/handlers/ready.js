@@ -1,6 +1,4 @@
 const fs = require("fs");
-const discord = require("discord.js");
-const os = require("os");
 module.exports = (client) => {
 	client.randomStatus = [
 		"NEKOPARA Vol. 1",
@@ -72,21 +70,4 @@ module.exports = (client) => {
 			}
 		} 
 	}else client.Logger.warn("The bot administrators key in the configuration was unable to be read.");
-
-	// Post to log channel that the bot is online.
-	const embed = new discord.MessageEmbed()
-		.setTitle(`${client.user.username} has connected to Discord!`)
-		.setDescription(`${client.user.username} is now online.`)
-		.setTimestamp()
-		.addField("System Details", `OS type: \`${os.type()}\`, Node Verstion: \`${process.version}\`, Platform: \`${os.platform()}\``)
-		.addField("Git Details", `Git Commit: \`${gitCommitHead}\`, Repository: \`incomplete\``);
-	const msg = client.channels.cache.get(client.Configuration.Channels.LOGS).send({embeds: [embed]});
-	msg.then(msg => {
-		embed.fields = [];
-		embed.addField("System Details", `OS type: \`${os.type()}\`, Node Verstion: \`${process.version}\`, Platform: \`${os.platform()}\``);
-		embed.addField("Git Details", `Git Commit: \`${gitCommitHead}\`, Repository: \`incomplete\``);
-		msg.edit({embeds: [embed]});
-	});
-
-
 };
