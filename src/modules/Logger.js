@@ -1,6 +1,7 @@
 const chalk = require("chalk");
 const moment = require("moment");
-module.exports = (NECos) => {
+// eslint-disable-next-line no-unused-vars
+module.exports = (client) => {
 	function log(content, type = "LOG", colour = chalk.bgMagenta){
 		const timestamp = `[${moment().format("YYYY-MM-DD HH:mm")}]:`;
 		const message = `${timestamp} ${colour(type.toUpperCase())} ${content} `;
@@ -21,4 +22,4 @@ module.exports = (NECos) => {
 	};
 	return functions;
 	
-}
+};

@@ -1,10 +1,10 @@
 {
-  "name": "necos-js",
-  "version": "1.0.0",
-  "description": "NECos JavaScript-based Discord bot",
-  "main": "./src/NECos.js",
-  "repository": "https://github.com/Nuclear-Engineering-Co/NECos",
-  "author": "imskyyc & Anthonycanada",
+  "name": "Hue-v4",
+  "version": "4.0.0",
+  "description": "Hue JavaScript-based Discord bot",
+  "main": "./src/index.js",
+  "repository": "https://github.com/ItzRock/Hue-v4.0",
+  "author": "imskyyc & Anthony",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {

@@ -14,8 +14,8 @@ class Setting {
 }
 module.exports = {
 	Setting,
-	Init: (NECos) => {
-		NECos.DefaultSettings = new Map();
+	Init: (client) => {
+		client.DefaultSettings = new Map();
 
 
 	}

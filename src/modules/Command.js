@@ -1,4 +1,4 @@
-module.exports = (NECos) => {
+module.exports = (client) => {
 	class Command {
 		constructor(name, description, args, category, enabled, forceEnabled, run) {
 			this.name = name;
@@ -11,12 +11,12 @@ module.exports = (NECos) => {
 		}
 	}
 
-	NECos.Commands = {
+	client.Commands = {
 		Class : Command,
 		cache : new Map(),
 		get: (name) => {
-			return NECos.Commands.cache.get(name);
+			return client.Commands.cache.get(name);
 		}
 	};
-	return NECos.Commands;
+	return client.Commands;
 };

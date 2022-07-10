@@ -24,16 +24,11 @@ module.exports = (client) => {
 	client.on("ready", () => {
 		// Get all guilds
 		client.guilds.cache.forEach((guild) => {
-			// Get all the commands and remove them all.
-			guild.commands.cache.forEach(async (command) => {
-				await command.delete();
-			});
+			guild.commands.set([]);
 		});
 
 		// Delete all global commands too
-		client.application.commands.cache.forEach(async (command) => {
-			await command.delete();
-		});
+		client.application.commands.set([]);
 	});
 
 	

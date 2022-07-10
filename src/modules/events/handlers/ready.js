@@ -1,14 +1,14 @@
 const fs = require("fs");
-module.exports = (client) => {
+const wait = require("node:timers/promises").setTimeout;
+module.exports = async (client) => {
+	await client.user.setActivity("The Bot is currently Booting", {type: "PLAYING"});
+	await wait(5000);
 	client.randomStatus = [
+		"with a firearm.",
 		"NEKOPARA Vol. 1",
 		"Minecraft",
 		"Roblox",
-		"with a firearm.",
-		"Energetic Sandbox",
-		"with a dog",
-		"dead",
-		"with a british red coat",
+		"Counter-Strike: Global Offensive",
 	];
 
 	// Do a interval because I find after a while the status likes to fuck off for no reason
