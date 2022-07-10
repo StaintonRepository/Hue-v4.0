@@ -1,14 +1,11 @@
 const fs = require("fs");
-const wait = require("node:timers/promises").setTimeout;
 module.exports = async (client) => {
-	await client.user.setActivity("The Bot is currently Booting", {type: "PLAYING"});
-	await wait(5000);
 	client.randomStatus = [
 		"with a firearm.",
 		"NEKOPARA Vol. 1",
 		"Minecraft",
-		"Roblox",
 		"Counter-Strike: Global Offensive",
+
 	];
 
 	// Do a interval because I find after a while the status likes to fuck off for no reason
@@ -29,7 +26,7 @@ module.exports = async (client) => {
 	setInterval(function(){
 		client.user.setActivity(`${client.activeStatus} | git ${gitCommitHead}`, {type: "PLAYING"});
 	}, client.minutesPerStatus * 6000);
-	client.Logger.ready(`Logged On As: ${client.user.tag}, | ${client.user.username} JS v2.0.`);
+	client.Logger.ready(`Logged On As: ${client.user.tag}`);
 	client.Modules.get("cli").prompt();
 
 	// Read the configuration and parse who the bot administrators are.
