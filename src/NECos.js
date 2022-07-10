@@ -1,4 +1,9 @@
 /*
+	NECos JS v2.0
+	Made by Anthony
+	(idk why they put me in charge of programming my bot's replacement)
+
+
 	Before you run the bot make sure you have a ".env" file with 'TOKEN = "insert token here" ' to prevent running into errors
 */
 const { Client } = require("discord.js");

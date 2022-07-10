@@ -10,6 +10,7 @@ module.exports = (client) => {
 		"Energetic Sandbox",
 		"with a dog",
 		"dead",
+		"with a british red coat",
 	];
 
 	// Do a interval because I find after a while the status likes to fuck off for no reason
@@ -18,6 +19,7 @@ module.exports = (client) => {
 	client.minutesPerStatus = 5;
 
 	let gitCommitHead = "Pending";
+	client.gitData = gitCommitHead;
 	fs.readFile("./.git/FETCH_HEAD", "utf8", (err, data) =>{
 		gitCommitHead = data.slice(0,8);
 		client.gitData = gitCommitHead;
@@ -80,7 +82,11 @@ module.exports = (client) => {
 		.addField("Git Details", `Git Commit: \`${gitCommitHead}\`, Repository: \`incomplete\``);
 	const msg = client.channels.cache.get(client.Configuration.Channels.LOGS).send({embeds: [embed]});
 	msg.then(msg => {
-		console.log(msg);
+		embed.fields = [];
+		embed.addField("System Details", `OS type: \`${os.type()}\`, Node Verstion: \`${process.version}\`, Platform: \`${os.platform()}\``);
+		embed.addField("Git Details", `Git Commit: \`${gitCommitHead}\`, Repository: \`incomplete\``);
+		msg.edit({embeds: [embed]});
 	});
+
 
 };
