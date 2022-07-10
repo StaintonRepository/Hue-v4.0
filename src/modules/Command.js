@@ -11,11 +11,12 @@ module.exports = (NECos) => {
 		}
 	}
 
-	return {
+	NECos.Commands = {
 		Class : Command,
 		cache : new Map(),
 		get: (name) => {
 			return NECos.Commands.cache.get(name);
 		}
 	};
+	return NECos.Commands;
 };

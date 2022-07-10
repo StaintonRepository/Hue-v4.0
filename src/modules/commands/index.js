@@ -1,26 +1,40 @@
 
 const fs = require("fs");
 /* eslint-disable no-unused-vars */
-module.exports = (NECos) => {
-	// Ahhh this is gonna be a pain in the ass.
+/**
+ * @param {import("discord.js").Client} client 
+ */
+module.exports = (client) => {
+	// god I hate slash commands.
+	
+	// Get all the commands and remove deleted ones and add new ones
 
-	// First get an array of all the commands unsorted.
-	const unsorted = [];
+	const unsortedNames = [];
 
+	// Load the categories.
 	const categories = fs.readdirSync("./src/modules/commands/categories", "utf8");
 	for(const category of categories){
+
 		const commands = fs.readdirSync("./src/modules/commands/categories/"+category, "utf8");
 		for(const command of commands){
-			unsorted.push(command.split(".")[0]);
+			unsortedNames.push(command.split(".")[0]);
 		}
 	}
 
-	// Now check all guilds to see if they have that command.
-	// Do this so that we can access guilds.
-	NECos.on("ready", () => {
-		NECos.guilds.cache.forEach(guild => {
-			
+	client.on("ready", () => {
+		// Get all guilds
+		client.guilds.cache.forEach((guild) => {
+			// Get all the commands and remove them all.
+			guild.commands.cache.forEach(async (command) => {
+				await command.delete();
+			});
+		});
+
+		// Delete all global commands too
+		client.application.commands.cache.forEach(async (command) => {
+			await command.delete();
 		});
 	});
-	console.log(unsorted);
+
+	
 };
