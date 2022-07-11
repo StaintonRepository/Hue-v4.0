@@ -23,6 +23,8 @@ module.exports = {
 	config: {
 		adminOnly: false,
 		enabled: true,
+		// If you don't understand this category line, dw about it, it just fetches the parent directory with support for windows and linux.
+		category: __dirname.split("\\")[__dirname.split("\\").length - 1].split("/")[__dirname.split("/").length - 1],
 		data: new SlashCommandBuilder()
 			.setName(filename)
 			.setDescription("Pong!")

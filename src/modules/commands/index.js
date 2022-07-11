@@ -1,34 +1,43 @@
 /* eslint-disable no-unused-vars */
-
+const fs = require("fs");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 
-const fs = require("fs");
-function runEachCommand(callback){
-	const categories = fs.readdirSync("./src/modules/commands/categories", "utf8");
-	for(const category of categories){
-
-		const commands = fs.readdirSync("./src/modules/commands/categories/"+category, "utf8");
-		for(const command of commands){
-			callback(command, category, commands, categories);
-			
-		}
-	}
-}
 /**
  * @param {import("discord.js").Client} client 
  */
 module.exports = (client) => {
 	// god I hate slash commands.
-	
-	// Get all the commands and remove deleted ones and add new ones
+	client.rawCommands = new Map();
 
-	const unsortedNames = [];
-
-	// Load the categories.
-	runEachCommand((command)=> {
-		unsortedNames.push(command.split(".")[0]);
-	});
+	const functions = {
+		runEachCommand: (callback) => {
+			const categories = fs.readdirSync("./src/modules/commands/categories", "utf8");
+			for(const category of categories){
+		
+				const commands = fs.readdirSync("./src/modules/commands/categories/"+category, "utf8");
+				for(const command of commands){
+					callback(command, category, commands, categories);
+					
+				}
+			}
+		},
+		load: (name, category) => {
+			const returnedData = require(`./categories/${category}/${name}`);
+			const data = returnedData.config.data;
+			client.Commands.cache.set(data.name, returnedData);
+			client.rawCommands.set(data.name, data.toJSON());
+		},
+		unload: (name) => {
+			client.Commands.cache.delete(name);
+			client.rawCommands.delete(name);
+		},
+	};
+	functions.reload = (name) => {
+		const category = client.Commands.cache.get(name).category;
+		functions.unload(name);
+		functions.load(name, category);
+	};
 
 	client.on("ready", async () => {
 		await client.user.setActivity("The Bot is currently Booting", {type: "PLAYING"});
@@ -37,18 +46,8 @@ module.exports = (client) => {
 			//	guild.commands.set([]);
 		});
 
-		// Delete all global commands too
-		//client.application.commands.set([]);
-
-		// Load all the commands.
-		const commandsArray = [];
-
-		runEachCommand((command, category) => {
-			const commandReturnData = require(`./categories/${category}/${command}`);
-			const data = commandReturnData.config.data;
-			client.Commands.cache.set(data.name, commandReturnData);
-			commandsArray.push(data.toJSON());
-		});
+		// Load all the commands
+		functions.runEachCommand(functions.load);
 
 		// register the commands
 		const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
@@ -56,13 +55,12 @@ module.exports = (client) => {
 			client.Logger.log("Commands are being loaded to the API");
 			await rest.put(
 				Routes.applicationCommands(client.user.id),
-				{body: commandsArray}
+				{body: Array.from(client.rawCommands.values())}
 			);
 			client.emit("loaded");
 		} catch (error) {
 			console.log(error);
 		}
 	});
-
-	
+	return functions;
 };
