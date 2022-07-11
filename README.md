@@ -106,7 +106,7 @@ This is an example of how to list things you need to use the software and how to
    ```
    TOKEN = "SuperSecretToken";
    ```
-5. Clone and fill out the `configuration.toml` file.
+5. Clone and fill out the `configuration.toml` file. (refer to the `configuration template.toml` for the most up to date template)
 	```toml
 	[Client]
 	BOT_ADMINISTRATION = [ 

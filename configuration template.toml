@@ -10,6 +10,13 @@ BOT_ADMINISTRATION = [
 	"#[GUILD_ID]"
 ]
 
+[Emojis]
+# This is the emoji that will be used for the bot's commands.
+check = "✅"
+ex = "❗"
+x = "❌"
+customExample = "<:example:12345>"
+
 [Channels]
 LOGS = "Channel ID"
 
