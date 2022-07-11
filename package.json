@@ -1,5 +1,5 @@
 {
-  "name": "Hue-v4",
+  "name": "hue-v4",
   "version": "4.0.0",
   "description": "Hue JavaScript-based Discord bot",
   "main": "./src/index.js",

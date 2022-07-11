@@ -28,12 +28,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/ItzRock/Hue-v4.0">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-<h3 align="center">Hue v4.0</h3>
-	Warning This project is still very early in development.
+  
+<h1 align="center"><b>Hue v4.0</b></h1>
+	<b>Warning This project is still very early in development.</b>
 
   <p align="center">
     Hue v4 is a continuation of my Hue Project, expanding it to more services such as Minecraft, Steam, And Roblox.
@@ -74,6 +71,8 @@
 Hue v4.0 is a discord bot which allows servers which need to verify the users who are joining their servers with their relevant account, for example: `Garry's mod or other Steam Game community needs to verify that a user is indeed a steam account` or `A Roblox community needs a user to verify as their roblox account` and lastly `A minecraft server needs to verify a user as their minecraft account` The only limitation of this (currently) is you can only have one service enabled per discord server.
 
 As you may have noticed this is a fork of bot called NECos, I orginially was tasked to create that bot to replace Hue v3.0 for one of its biggests servers and after facing harassment from one of the devs (classic roblox drama) I've continued development as Hue v4.0 as I might as well not waste the code slash kill two birds with one stone. 
+
+Additionally this bot was designed to work in the Pterodactyl panel so there may be some features which may or may not break without it, I still need to figure out what to add to the readme as I am still working on this and its still very early
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
