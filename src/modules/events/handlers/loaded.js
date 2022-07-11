@@ -13,13 +13,17 @@ module.exports = async (client) => {
 
 	client.minutesPerStatus = 5;
 
-	let gitCommitHead = "Pending";
+	let gitCommitHead = "Pending / Unknown";
 	client.gitData = gitCommitHead;
-	fs.readFile("./.git/FETCH_HEAD", "utf8", (err, data) =>{
-		gitCommitHead = data.slice(0,8);
-		client.gitData = gitCommitHead;
+	try {
+		fs.readFile("./.git/FETCH_HEAD", "utf8", (err, data) =>{
+			gitCommitHead = data.slice(0,8);
+			client.gitData = gitCommitHead;
+			client.user.setActivity(`${client.activeStatus} | git ${gitCommitHead}`, {type: "PLAYING"});
+		});	
+	} catch (error) {
 		client.user.setActivity(`${client.activeStatus} | git ${gitCommitHead}`, {type: "PLAYING"});
-	});
+	}
 
 
 	client.user.setActivity(`${client.activeStatus} | git ${gitCommitHead}`, {type: "PLAYING"});
