@@ -174,7 +174,7 @@ Project Link: [https://github.com/ItzRock/Hue-v4.0](https://github.com/ItzRock/H
 [issues-shield]: https://img.shields.io/github/issues/ItzRock/Hue-v4.0.svg?style=for-the-badge
 [issues-url]: https://github.com/ItzRock/Hue-v4.0/issues
 [license-shield]: https://img.shields.io/github/license/ItzRock/Hue-v4.0.svg?style=for-the-badge
-[license-url]: https://github.com/ItzRock/Hue-v4.0/blob/master/LICENSE.txt
+[license-url]: https://github.com/ItzRock/Hue-v4.0/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
