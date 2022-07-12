@@ -39,7 +39,7 @@ module.exports = {
 			.setDMPermission(true)
 			.addStringOption(option => 
 				option.setName("input")
-					.setDescription("A command")
+					.setDescription("Give the name of an existing command")
 					.setRequired(true))
 
 	}
