@@ -20,7 +20,6 @@ customExample = "<:example:12345>"
 [Channels]
 LOGS = "Channel ID"
 
-[Database]
-URL = "DatabaseURL"
-USERNAME = "DatabaseUsername"
-PASSWORD = "DatabasePassword"
+[Database] # Currently the bot is only supported to use mongodb
+MONGO_URI = "mongodb://localhost:27017/"
+MONGO_DB = "bot"

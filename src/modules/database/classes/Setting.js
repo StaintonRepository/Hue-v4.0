@@ -4,19 +4,16 @@ class Setting {
 	description = "This Setting lacks a description.";
 	editable = true;
 	value = undefined;
-	constructor(name, description, value, editable){
+	lastUpdated = undefined;
+	editor = "Unknown#0000";
+	constructor(name, description, value, editable, editor){
 		this.name = name;
 		this.description = description;
 		this.value = value;
 		this.editable = editable;
+
+		this.lastUpdated = new Date();
+		this.editor = editor;
 	}
 
 }
-module.exports = {
-	Setting,
-	Init: (client) => {
-		client.DefaultSettings = new Map();
-
-
-	}
-};
