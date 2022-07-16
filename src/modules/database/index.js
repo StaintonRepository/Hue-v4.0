@@ -66,12 +66,12 @@ module.exports = (client) => {
 	return {
 		default: functions,
 		default_settings: [
-			new Setting("Logging Channel", "A channel to send logs.", "", true, "channel", "General"),
-			new Setting("Auto Role", "Automatically role people who join your server.", "", true, "role", "General"),
+			new Setting(0, "Logging Channel", "A channel to send logs.", "", true, "channel", "General"),
+			new Setting(1, "Auto Role", "Auto Role people who join", "", true, "role", "General"),
 
-			new Setting("Welcoming", "Automatically welcome people who join your server.", false, true, "boolean", "General"),
-			new Setting("Welcoming-Channel", "Decide which channel to send the welcoming message.", "", true, "channel", "General"),
-			new Setting("Welcoming-Text", "The content to send to your welcoming channel if welcoming is enabled.", "Welcome {{user}} to {{guild}}!", true, "string", "General"),
+			new Setting(2, "Welcoming", "Welcome new server members.", false, true, "boolean", "General"),
+			new Setting(3, "Welcoming-Channel", "Channel for welcome message", "", true, "channel", "General"),
+			new Setting(4, "Welcoming-Text", "The content to send to your welcoming channel if welcoming is enabled.", "Welcome {{user}} to {{guild}}!", true, "string", "General"),
 			
 			/*
 				0 = None
@@ -79,26 +79,26 @@ module.exports = (client) => {
 				2 = Steam
 				3 = Minecraft
 			*/
-			new Setting("verification_current", undefined, 0, false, "number"),
-			new Setting("Verified Role", "Role in which to give the user once verified", "", true, "role", "Verification General"),
-			new Setting("Group URL", "URL for the either Roblox or Steam group", "", true, "string", "Verification General"),
-			new Setting("Group Member Required", "If the user should be in the roblox / steam group to verify", false, true, "boolean", "Verification General"),
-			new Setting("Force Game Name", "Should the bot make the user carry their minecraft / roblox / steam name in this server?", false, true, "boolean", "Verification General"),
+			new Setting(5, "verification_current", undefined, 0, false, "number"),
+			new Setting(6, "Verified Role", "Role in which to give the user once verified", "", true, "role", "Verification General"),
+			new Setting(7, "Group URL", "URL for the either Roblox or Steam group", "", true, "string", "Verification General"),
+			new Setting(8, "Group Member Required", "If the player needs to be a group member first", false, true, "boolean", "Verification General"),
+			new Setting(9, "Force Game Name", "Force the in-game name", false, true, "boolean", "Verification General"),
 			
 			// See "./name_formatting.txt"
-			new Setting("Name Formatting", "Force Game Name needs to be enabled to change this", "{{platform_name}}", true, "string", "Verification General"),
+			new Setting(10, "Name Formatting", "Formatting of in-game name", "{{platform_name}}", true, "string", "Verification General"),
 			
 
 			// Roblox Verification
-			new Setting("Roblox Verification", "If Roblox Verification should be enabled or not", false, true, "boolean", "Roblox"),
-			new Setting("role_binds", "If Roblox Verification should be enabled or not", [], false, "object", "Roblox"),
-			new Setting("Auto Find Roles", "Automatically finds the Roblox role and tries to match it to a discord rank", false, true, "boolean", "Roblox"),
+			new Setting(11, "Roblox Verification", "If Roblox Verification should be enabled or not", false, true, "boolean", "Roblox"),
+			new Setting(12, "role_binds", "If Roblox Verification should be enabled or not", [], false, "object", "Roblox"),
+			new Setting(13, "Auto Find Roles", "Automatically finds the Roblox role and tries to match it to a discord rank", false, true, "boolean", "Roblox"),
 			
 			// Steam Verification
-			new Setting("Steam Verification", "If Steam Verification should be enabled or not", false, true, "boolean", "Steam"),
+			new Setting(14, "Steam Verification", "If Steam Verification should be enabled or not", false, true, "boolean", "Steam"),
 			
 			// Minecraft Verification
-			new Setting("Minecraft Verification", "If Minecraft Verification should be enabled or not", false, true, "boolean", "Minecraft"),
+			new Setting(15, "Minecraft Verification", "If Minecraft Verification should be enabled or not", false, true, "boolean", "Minecraft"),
 		],
 		settings: require("./db/settings.js")(client, functions),
 		roblox: require("./db/roblox.js")(client, functions),

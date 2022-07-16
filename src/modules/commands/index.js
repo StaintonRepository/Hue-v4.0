@@ -11,19 +11,24 @@ module.exports = (client) => {
 	client.rawCommands = new Map();
 
 	const functions = {
-		runEachCommand: (callback) => {
+		runEachCommand: async (callback) => {
 			const categories = fs.readdirSync("./src/modules/commands/categories", "utf8");
 			for(const category of categories){
 		
 				const commands = fs.readdirSync("./src/modules/commands/categories/"+category, "utf8");
 				for(const command of commands){
-					callback(command, category, commands, categories);
+					await callback(command, category, commands, categories);
 					
 				}
 			}
 		},
-		load: (name, category) => {
-			const returnedData = require(`./categories/${category}/${name}`);
+		load: async (name, category) => {
+			const rawData = require(`./categories/${category}/${name}`);
+			let returnedData = rawData;
+			if(typeof(rawData) == "function") {
+				returnedData = await rawData(client);
+			}
+			
 			const data = returnedData.config.data;
 			client.Commands.cache.set(data.name, returnedData);
 			client.rawCommands.set(data.name, data.toJSON());
@@ -40,14 +45,10 @@ module.exports = (client) => {
 	};
 
 	client.on("ready", async () => {
-		await client.user.setActivity("The Bot is currently Booting", {type: "PLAYING"});
-		// Get all guilds
-		client.guilds.cache.forEach((guild) => {
-			//	guild.commands.set([]);
-		});
+		client.user.setActivity("BOOTING", {type: "PLAYING"});
 
 		// Load all the commands
-		functions.runEachCommand(functions.load);
+		await functions.runEachCommand(functions.load);
 
 		// register the commands
 		const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
