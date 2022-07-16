@@ -1,3 +1,8 @@
+Help Document for Formatting Names.
+
+
+Example Usernames
+
 John (Discord Username)
 JohnDoe69 (Roblox Username)
 John Doe (Roblox Display Name)
@@ -13,3 +18,6 @@ JohnBenderDoe (Minecraft Name)
 
 e.g 
 "{{discord}} ({{minecraft}})" => John (JohnBenderDoe)
+
+If you put "" as the value the discord api will detect that as removing their nickname.
+Additionally if their username is over the discord username limit it will just cut off abruptly 

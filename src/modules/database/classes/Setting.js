@@ -12,7 +12,9 @@ module.exports = class Setting {
 
 	lastUpdated = new Date();
 	editor = {tag: "System", id: "000000000000000"};
-	constructor(id, name, description, value, editable, expectedType, category = "System", editor = {tag: "System", id: "000000000000000"}){
+
+	help = undefined;
+	constructor(id, name, description, value, editable, expectedType, category = "System", help, editor = {tag: "System", id: "000000000000000"}){
 		this.id = id.toString();
 		this.name = name;
 		this.description = description;
@@ -26,6 +28,8 @@ module.exports = class Setting {
 
 		this.lastUpdated = new Date();
 		this.editor = editor;
+
+		this.help = help;
 
 		return this;
 	}

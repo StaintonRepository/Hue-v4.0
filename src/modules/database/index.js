@@ -79,26 +79,19 @@ module.exports = (client) => {
 				2 = Steam
 				3 = Minecraft
 			*/
-			new Setting(5, "verification_current", undefined, 0, false, "number"),
+			new Setting(5, "Verification Method", "Method of verification (eg. roblox, steam, minecraft)", 0, true, "verification", "Verification General"),
 			new Setting(6, "Verified Role", "Role in which to give the user once verified", "", true, "role", "Verification General"),
 			new Setting(7, "Group URL", "URL for the either Roblox or Steam group", "", true, "string", "Verification General"),
 			new Setting(8, "Group Member Required", "If the player needs to be a group member first", false, true, "boolean", "Verification General"),
 			new Setting(9, "Force Game Name", "Force the in-game name", false, true, "boolean", "Verification General"),
 			
 			// See "./name_formatting.txt"
-			new Setting(10, "Name Formatting", "Formatting of in-game name", "{{platform_name}}", true, "string", "Verification General"),
+			new Setting(10, "Name Formatting", "Formatting of in-game name", "{{platform_name}}", true, "string", "Verification General", "https://github.com/ItzRock/Hue-v4.0/blob/main/src/modules/database/name_formatting.md"),
 			
 
 			// Roblox Verification
-			new Setting(11, "Roblox Verification", "If Roblox Verification should be enabled or not", false, true, "boolean", "Roblox"),
-			new Setting(12, "role_binds", "If Roblox Verification should be enabled or not", [], false, "object", "Roblox"),
-			new Setting(13, "Auto Find Roles", "Automatically finds the Roblox role and tries to match it to a discord rank", false, true, "boolean", "Roblox"),
-			
-			// Steam Verification
-			new Setting(14, "Steam Verification", "If Steam Verification should be enabled or not", false, true, "boolean", "Steam"),
-			
-			// Minecraft Verification
-			new Setting(15, "Minecraft Verification", "If Minecraft Verification should be enabled or not", false, true, "boolean", "Minecraft"),
+			new Setting(12, "role_binds", "If Roblox Verification should be enabled or not", [], false, "object", "Roblox Verification"),
+			new Setting(13, "Auto Find Roles", "Automatically finds the Roblox role and tries to match it to a discord rank", false, true, "boolean", "Roblox Verification"),
 		],
 		settings: require("./db/settings.js")(client, functions),
 		roblox: require("./db/roblox.js")(client, functions),

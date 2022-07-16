@@ -8,10 +8,12 @@ module.exports = async (client, interaction) => {
 	const emojis = client.Configuration.Emojis;
 	interaction.emojis = emojis;
 
-	interaction.rawDB = interaction.guild ? client.Modules.get("database").settings.read(interaction.guild.id) : client.Modules.get("database").default_settings;
+	interaction.rawDB = interaction.guild ? await client.Modules.get("database").settings.get(interaction.guild.id) : client.Modules.get("database").default_settings;
 
 	interaction.settings = new Map();
-
+	for(const setting of interaction.rawDB.Settings){
+		interaction.settings.set(setting.id, setting);
+	}
 	
 
 	const command = client.Commands.cache.get(interaction.commandName);
