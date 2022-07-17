@@ -67,10 +67,10 @@ module.exports = (client) => {
 		default: functions,
 		default_settings: [
 			new Setting(0, "Logging Channel", "A channel to send logs.", "", true, "channel", "General"),
-			new Setting(1, "Auto Role", "Auto Role people who join", "", true, "role", "General"),
+			new Setting(1, "Auto Role", "Auto Role people who join", "none", true, "role", "General"),
 
-			new Setting(2, "Welcoming", "Welcome new server members.", false, true, "boolean", "General"),
-			new Setting(3, "Welcoming-Channel", "Channel for welcome message", "", true, "channel", "General"),
+			//new Setting(2, "Welcoming", "Welcome new server members.", false, true, "boolean", "General"),
+			new Setting(3, "Welcoming-Channel", "Channel for welcome message", "none", true, "channel", "General"),
 			new Setting(4, "Welcoming-Text", "The content to send to your welcoming channel if welcoming is enabled.", "Welcome {{user}} to {{guild}}!", true, "string", "General", "https://github.com/ItzRock/Hue-v4.0/blob/main/docs/welcoming%20vars.md"),
 			
 			/*

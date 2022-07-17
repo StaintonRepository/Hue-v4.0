@@ -8,6 +8,10 @@ In Hue v4.0 welcoming text has much more variables than before.
 `{{owner}}` -> returns the owner name<br/>
 `{{rules}}` -> returns the rules channel in a clickable form<br/>
 
+`{{user_avatar}}` -> returns the avatar url of the user who joined<br/>
+`{{server_img}}` -> returns the server logo url<br/>
+
+
 Okay so 2 more variables but still thats an improvement.
 
 Additionally you can also create an embed welcome message by using the `[embed]` control variable 
@@ -55,6 +59,6 @@ So an example using the premade embed would look like.<br/>
 `[embed] --premade`<br/>
 
 and a custom one would like something like<br/>
-`[embed] --timestamp [now] --author {{server}} --title Welcome {{user}} to {{Server}} --description We welcome you here {{user}}!!`<br/>
+`[embed] --timestamp [now] --author {{server}} --title Welcome {{username}} to {{server}} --description We welcome you here {{user}}!! --thumbnail {{user_avatar}} --color GREEN`<br/>
 
 And a warning if your embed is invalid and creates and error instead of getting your welcome message, your welcoming channel will receive errors.<br/>

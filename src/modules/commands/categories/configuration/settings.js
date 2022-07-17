@@ -30,7 +30,13 @@ module.exports = (client) => {
 			if(interaction.options.getSubcommand() == "edit"){
 				let completed = false;
 				
-				const suggestLogs = [];
+				const suggestLogs = [
+					{
+						label: "Disabled (Default)",
+						value: "none",
+						description: "No logging on this server",
+					},
+				];
 				const components = [];
 
 				let configItem = undefined;
@@ -152,7 +158,7 @@ module.exports = (client) => {
 								.setPlaceholder("Suggested Welcoming Messages")
 								.addOptions(
 									{
-										label: "Welcome {{user}} to {{server}}",
+										label: "Welcome {{user}} to {{server} (Default)",
 										value: "Welcome {{user}} to {{server}}",
 										description: `Welcome ${interaction.user.username} to ${interaction.guild.name}`,
 									},
@@ -175,6 +181,47 @@ module.exports = (client) => {
 						);
 					components.push(selectMenu);
 				}
+				// suggested auto roles
+				if(["1","6"].includes(configItem.id)){
+					const roles = [
+						{
+							label: "None (Default)",
+							value: "none",
+							description: "No auto roles will be assigned",
+						},
+					];
+					const regs = [
+						/member/g,
+						/user/g,
+						/employee/g,
+						/civilian/g,
+						/unverified/g,
+						/customer/g,
+					];
+					for(const role of interaction.guild.roles.cache){
+						for(const reg of regs){
+							if(reg.test(role[1].name.toLowerCase())){
+								roles.push({
+									label: role[1].name,
+									value: role[1].id,
+									description: role[1].name,
+								});
+							}
+						}
+					}
+
+
+					const selectMenu = new MessageActionRow()
+						.addComponents(
+							new MessageSelectMenu()
+								.setCustomId(interaction.id + "_select")
+								.setPlaceholder("Suggested Auto Roles")
+								.addOptions(...roles)
+						);
+					if(roles.length != 0)
+						components.push(selectMenu);
+				}
+
 
 				// verification 
 				if(configItem.expectedType == "verification"){
@@ -227,21 +274,25 @@ module.exports = (client) => {
 				const filter = m => m.author.id == interaction.user.id;
 				const collector = interaction.channel.createMessageCollector({filter, time: 120000, max: 1});
 				collector.on("collect", msg => {
-					if(expectedType == "channel"){
+					collector.stop();
+					if(msg.content.toLocaleLowerCase() == "cancel"){
+						msg.reply("Cancelled");
+					} else if(msg.content.toLocaleLowerCase() == "none")
+						return finalize("none", msg);
+					else if(expectedType == "channel" || msg.content.toLowerCase() == "none"){
 						if(channelReg.test(msg.content)){
-							finalize(msg.content, msg, msg.content);
+							return finalize(msg.content, msg, msg.content);
 						} else msg.reply("Couldn't parrse a channel from your reply. Please try again with a clickable channel name.");
-					} else if(expectedType == "string") finalize(msg.content, msg);
+					} else if(expectedType == "string") return finalize(msg.content, msg);
 					else if(expectedType == "role"){
-						if(roleReg.test(msg.content)){
-							finalize(msg.content, msg, msg.content);
-						} else msg.reply("Couldn't parse a role from your reply. Please try again with a role ping. (Do it in a private channel if you fear of pinging others)");
+						if(roleReg.test(msg.content) || msg.content.toLowerCase() == "none"){
+							return finalize(msg.content, msg, msg.content);
+						} else return msg.reply("Couldn't parse a role from your reply. Please try again with a role ping. (Do it in a private channel if you fear of pinging others)");
 					} else if(expectedType == "boolean"){
 						if(msg.content == "true" || msg.content == "false"){
-							finalize(msg.content, msg);
-						} else msg.reply("Couldn't parse a boolean from your reply. Please try again with either `true` or `false`.");
+							return finalize(msg.content, msg);
+						} else return msg.reply("Couldn't parse a boolean from your reply. Please try again with either `true` or `false`.");
 					}
-
 				});
 
 				client.on(`${interaction.id}_select`, (select) => {
@@ -268,6 +319,8 @@ module.exports = (client) => {
 					value = value.replace("<#", "").replace(">", "");
 					value = value.replace("<@&", "").replace(">", "");
 
+					if(expectedType == "boolean") value = value == "true";
+
 					configItem.value = value;
 					configItem.editor = { tag: interaction.user.tag };
 					configItem.lastUpdated = new Date();
@@ -276,20 +329,56 @@ module.exports = (client) => {
 
 					const rawArray = Array.from(interaction.settings.values());
 					client.Modules.get("database").settings.update(interaction.guild.id, rawArray);
-
 					const embed = new MessageEmbed()
 						.setTimestamp()
 						.setAuthor({name: client.user.username, iconURL: client.user.avatarURL()})
 						.setFooter({text: client.user.username, iconURL: client.user.avatarURL()})
 						.setColor("GREEN")
 						.setTitle(`Successfully Edited ${configItem.name}`)
-						.setDescription(`You've successfully edited ${configItem.name} to ${pingable ? pingable : `\`${value}\``}`);
-
+						.setDescription(`You've successfully edited ${configItem.name} to ${pingable ? pingable.includes(">") ? pingable : `\`${value}\`` : `\`${value}\``}.`);
 					reply.reply({ embeds: [embed] });
 
 				}
 			} else {
-				interaction.reply("Test");
+				const categories = new Map();
+
+				for(const configItem of interaction.settings){
+					if(!categories.has(configItem[1].category)){
+						categories.set(configItem[1].category, []);
+					}
+					categories.get(configItem[1].category).push(configItem[1]);
+				}
+
+				const fields = [];
+
+				for(const [category, items] of categories){
+					let value = [];
+					for(const item of items){
+						if(item.editable == false) continue;
+						value.push(`${item.name}: \`${item.value}\`\n`);
+					}
+					const field = {
+						name: category,
+						value: value.join("\n"),
+						inline: true
+					};
+					fields.push(field);
+				}
+
+				const embed = new MessageEmbed()
+					.setTimestamp()
+					.setAuthor({name: client.user.username, iconURL: client.user.avatarURL()})
+					.setFooter({text: client.user.username, iconURL: client.user.avatarURL()})
+					.setColor("GREEN")
+					.setTitle(`Configuration for ${interaction.guild.name}`)
+					.setDescription("If you don't recognize a setting as what you set it to, its likely that its the ID for a channel or role.")
+					.addFields(...fields);
+
+				interaction.reply({
+					embeds: [embed],
+				});
+
+
 			}
 
 		

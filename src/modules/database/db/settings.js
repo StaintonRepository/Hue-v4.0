@@ -42,6 +42,13 @@ module.exports = (client, dbFunctions) => {
 					}
 				}
 
+				// Now check if there are any guild settings which dont exist anymore
+				for(const key of db_settings) {
+					if(!default_settings_map.has(key.id)) {
+						db_settings_map.delete(key.id);
+					}
+				}
+
 				// Update the database and return the new settings
 				const db = {GuildID: id,Settings: Array.from(db_settings_map.values())};
 				functions.update(id, db.Settings);
