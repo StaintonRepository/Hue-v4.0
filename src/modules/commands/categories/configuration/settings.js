@@ -168,7 +168,7 @@ module.exports = (client) => {
 									},
 									{
 										label: "Fancy Embed Welcome",
-										value: "--embed",
+										value: "[embed] --premade",
 										description: "Read the document to learn more about embeds",
 									},
 								)
