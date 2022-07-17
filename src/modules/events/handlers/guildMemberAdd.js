@@ -42,7 +42,6 @@ module.exports = async (client, member) => {
 		if(text.includes("[embed]")){
 			const flagsRaw = text.split("--");
 			flagsRaw.shift();
-			console.log(flagsRaw);
 			const embedOverride = new MessageEmbed()
 				.setTimestamp()
 				.setAuthor({name: client.user.username, iconURL: client.user.avatarURL()})
@@ -75,6 +74,7 @@ module.exports = async (client, member) => {
 				const footer = {text: client.user.username, iconURL: client.user.avatarURL()};
 
 				for(const flag of flags){
+					// Could've used a switch statement but I don't like those.
 					if(flag.flag == "title"){
 						embed.setTitle(flag.arguments);
 					} else if(flag.flag == "description"){
