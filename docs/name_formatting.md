@@ -9,7 +9,7 @@ John Doe (Roblox Display Name)
 JohnishDoe (Steam Name)
 JohnBenderDoe (Minecraft Name)
 
-{{platform_name}} = whatever "verification_current" is set to aka whatever verification method is selected it will just return that platform username
+{{platform_name}} = whatever "verification_current" is set to aka whatever verification method is selected it will just return that platform username (If verification is disabled it will just be their discord username)
 {{discord}} = "John" Returns discord username
 {{roblox_username}} "JohnDoe69" returns roblox username
 {{roblox_display}} "John Doe" returns roblox display name

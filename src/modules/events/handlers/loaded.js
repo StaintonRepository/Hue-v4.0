@@ -71,4 +71,6 @@ module.exports = async (client) => {
 			}
 		} 
 	}else client.Logger.warn("The bot administrators key in the configuration was unable to be read.");
+
+	client.ready = true;
 };

@@ -4,6 +4,9 @@
  * @param {import("discord.js").CommandInteraction} interaction 
  */
 module.exports = async (client, interaction) => {
+	if(!client.isReady) return;
+	if(!client.ready) return interaction.reply("The bot is currently booting");
+
 	// Fetch emojis from the config.
 	const emojis = client.Configuration.Emojis;
 	interaction.emojis = emojis;

@@ -83,15 +83,15 @@ module.exports = (client) => {
 			new Setting(6, "Verified Role", "Role in which to give the user once verified", "", true, "role", "Verification General"),
 			new Setting(7, "Group URL", "URL for the either Roblox or Steam group", "", true, "string", "Verification General"),
 			new Setting(8, "Group Member Required", "If the player needs to be a group member first", false, true, "boolean", "Verification General"),
-			new Setting(9, "Force Game Name", "Force the in-game name", false, true, "boolean", "Verification General"),
+			//new Setting(9, "Force Game Name", "Force the in-game name", false, true, "boolean", "Verification General"),
 			
 			// See "./name_formatting.txt"
 			new Setting(10, "Name Formatting", "Formatting of in-game name", "{{platform_name}}", true, "string", "Verification General", "https://github.com/ItzRock/Hue-v4.0/blob/main/src/modules/database/name_formatting.md"),
 			
 
 			// Roblox Verification
-			new Setting(12, "role_binds", "If Roblox Verification should be enabled or not", [], false, "object", "Roblox Verification"),
-			new Setting(13, "Auto Find Roles", "Automatically finds the Roblox role and tries to match it to a discord rank", false, true, "boolean", "Roblox Verification"),
+			new Setting(11, "role_binds", "If Roblox Verification should be enabled or not", [], false, "object", "Roblox Verification"),
+			new Setting(12, "Auto Find Roles", "Automatically finds the Roblox role and tries to match it to a discord rank", false, true, "boolean", "Roblox Verification"),
 		],
 		settings: require("./db/settings.js")(client, functions),
 		roblox: require("./db/roblox.js")(client, functions),
