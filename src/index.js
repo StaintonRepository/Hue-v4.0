@@ -10,7 +10,9 @@ require("toml-require").install();
 const fs = require("fs");
 
 const client = new Client({
-	intents: ["DIRECT_MESSAGES", "GUILDS", "GUILD_BANS", "GUILD_INTEGRATIONS", "GUILD_MEMBERS", "GUILD_MESSAGES"],
+	intents: [
+		"DIRECT_MESSAGES", "GUILDS", "GUILD_BANS", "GUILD_INTEGRATIONS", "GUILD_MEMBERS", "GUILD_MESSAGES"
+	],
 	allowedMentions: {
 		// incase we want to just parse it through the bot. 
 		// parse: ["everyone", "roles"]
