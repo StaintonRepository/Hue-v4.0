@@ -30,6 +30,7 @@ module.exports = async (client, interaction) => {
 		});
 	} else {
 		// Run the command function. 
+		client.Logger.log(`${interaction.user.tag} (${interaction.user.id}) used command ${interaction.commandName} in ${interaction.guild.name} (${interaction.guild.id})`);
 		command.run(client, interaction).catch(err => {
 			interaction.reply("An Error occured while running this command.");
 			console.error(err);
