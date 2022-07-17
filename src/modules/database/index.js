@@ -71,7 +71,7 @@ module.exports = (client) => {
 
 			new Setting(2, "Welcoming", "Welcome new server members.", false, true, "boolean", "General"),
 			new Setting(3, "Welcoming-Channel", "Channel for welcome message", "", true, "channel", "General"),
-			new Setting(4, "Welcoming-Text", "The content to send to your welcoming channel if welcoming is enabled.", "Welcome {{user}} to {{guild}}!", true, "string", "General"),
+			new Setting(4, "Welcoming-Text", "The content to send to your welcoming channel if welcoming is enabled.", "Welcome {{user}} to {{guild}}!", true, "string", "General", "https://github.com/ItzRock/Hue-v4.0/blob/main/docs/welcoming%20vars.md"),
 			
 			/*
 				0 = None
@@ -86,7 +86,7 @@ module.exports = (client) => {
 			//new Setting(9, "Force Game Name", "Force the in-game name", false, true, "boolean", "Verification General"),
 			
 			// See "./name_formatting.txt"
-			new Setting(10, "Name Formatting", "Formatting of in-game name", "{{platform_name}}", true, "string", "Verification General", "https://github.com/ItzRock/Hue-v4.0/blob/main/src/modules/database/name_formatting.md"),
+			new Setting(10, "Name Formatting", "Formatting of in-game name", "{{platform_name}}", true, "string", "Verification General", "https://github.com/ItzRock/Hue-v4.0/blob/main/docs/name_formatting.md"),
 			
 
 			// Roblox Verification
