@@ -94,10 +94,10 @@ module.exports = async (client, member) => {
 					} else if(flag.flag == "footerImg"){
 						footer.iconURL = flag.arguments;
 					} else if(flag.flag == "timestamp"){
-						if(flag.arguments == "[now]")
-							embed.setTimestamp();
-						else 
+						if(!flag.arguments.includes("[now]"))
 							embed.setTimestamp(flag.arguments);
+						else 
+							embed.setTimestamp();
 					} else if(flag.flag == "add_field"){
 						const field = flag.arguments.split("[|]");
 						embed.addField(field[0], field[1], field[2] == "true");
