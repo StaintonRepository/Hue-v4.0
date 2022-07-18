@@ -73,7 +73,7 @@ module.exports = async (client, member) => {
 					const footer = {text: client.user.username, iconURL: client.user.avatarURL()};
 
 					for(const flag of flags){
-						// Could've used a switch statement but I don't like those.
+						// Could've used a switch statement but I don't like those. (or a loop ill actually do that later)
 						if(flag.flag == "title"){
 							embed.setTitle(flag.arguments);
 						} else if(flag.flag == "description"){
