@@ -9,7 +9,7 @@ module.exports = (client) => {
 		return new Promise((resolve, reject) => {
 			MongoClient.connect(url, (err, mongoClient) => {
 				if(err) reject(err);
-				if(mongoClient == undefined) {
+				if(mongoClient.db == undefined) {
 					reject(false);
 					client.Logger.log("WARNING - Database connection failed.");
 				}
