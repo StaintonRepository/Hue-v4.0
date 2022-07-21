@@ -5,7 +5,6 @@
 	Before you run the bot make sure you have a ".env" file with 'TOKEN = "insert token here" ' to prevent running into errors
 */
 const { Client } = require("discord.js");
-const { config } = require("dotenv"); config();
 require("toml-require").install();
 const fs = require("fs");
 
@@ -34,4 +33,4 @@ for(const filename of modulesFolder){
 }
 
 // Login to the bot (if this parts errors create a .env and add TOKEN = "insert token here" )
-client.login(process.env.TOKEN);
+client.login(client.Configuration.Client.TOKEN);

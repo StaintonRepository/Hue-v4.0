@@ -12,6 +12,8 @@ module.exports = (client) => {
 				if(mongoClient.db == undefined) {
 					reject(false);
 					client.Logger.log("WARNING - Database connection failed.");
+					if(mongoClient.close)
+						return mongoClient.close();
 				}
 				const db = mongoClient.db(dbName);
 				db.collection(collection).find(query).toArray((err, result) => {

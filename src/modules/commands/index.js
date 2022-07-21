@@ -51,7 +51,7 @@ module.exports = (client) => {
 		await functions.runEachCommand(functions.load);
 
 		// register the commands
-		const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
+		const rest = new REST({ version: "9" }).setToken(client.Configuration.Client.TOKEN);
 		try {
 			client.Logger.log("Commands are being loaded to the API");
 			await rest.put(

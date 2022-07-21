@@ -7,7 +7,7 @@ module.exports = class Minecraft {
 	lastUpdated = new Date();
 	editor = {tag: "Unknown#0000", id: "0"};
 	
-	constructor(minecraftID, discordID,  editor){
+	constructor(minecraftID, discordID, editor = {tag: "Unknown#0000", id: "0"}){
 		this.minecraftID = minecraftID;
 		this.discordID = discordID;
 

@@ -7,7 +7,7 @@ module.exports = class Roblox {
 	lastUpdated = new Date();
 	editor = {tag: "Unknown#0000", id: "0"};
 	
-	constructor(robloxID, discordID,  editor){
+	constructor(robloxID, discordID, editor = {tag: "Unknown#0000", id: "0"}){
 		this.robloxID = robloxID;
 		this.discordID = discordID;
 

@@ -7,7 +7,7 @@ module.exports = class Steam {
 	lastUpdated = new Date();
 	editor = {tag: "Unknown#0000", id: "0"};
 	
-	constructor(steamID64, discordID,  editor){
+	constructor(steamID64, discordID, editor = {tag: "Unknown#0000", id: "0"}){
 		this.steamID64 = steamID64;
 		this.discordID = discordID;
 

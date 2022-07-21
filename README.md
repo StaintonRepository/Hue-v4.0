@@ -90,17 +90,14 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    git clone https://github.com/ItzRock/Hue-v4.0.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your Bot Token in `.env`
-   ```
-   TOKEN = "SuperSecretToken";
-   ```
-5. Clone and fill out the `configuration.toml` file. (refer to the `configuration template.toml` for the most up to date template)
+3. Clone and fill out the `configuration.toml` file. (refer to the `configuration template.toml` for the most up to date template)
 	```toml
 	[Client]
+  TOKEN = "SuperSecretToken"
 	BOT_ADMINISTRATION = [ 
 	"@[USER_ID]",
 	]
