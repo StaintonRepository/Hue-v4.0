@@ -71,8 +71,6 @@ Hue v4.0 is a discord bot which allows servers which need to verify the users wh
 
 Discord js v13 and not v14? Discord.js v14 absolutely sucks it takes simple things and makes it 10x harder by forcing a type or a new enum which you need to import when before it only required a string. Additonally `embed.setColor` requires `0xcode` now? instead of `"#code"` what?
 
-As you may have noticed this is a fork of bot called NECos, I orginially was tasked to create that bot to replace Hue v3.0 for one of its biggests servers and after facing harassment from one of the devs (classic roblox drama) I've continued development as Hue v4.0 as I might as well not waste the code slash kill two birds with one stone. 
-
 Additionally this bot was designed to work in the Pterodactyl panel so there may be some features which may or may not break without it, I still need to figure out what to add to the readme as I am still working on this and its still very early
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -147,7 +145,7 @@ Distributed under the Apache 2.0 License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-[@ItzRock_](https://twitter.com/ItzRock_) - anthony2stainton@gmail.com
+[@ItzRock_](https://twitter.com/ItzRock_)
 
 Project Link: [https://github.com/ItzRock/Hue-v4.0](https://github.com/ItzRock/Hue-v4.0)
 
