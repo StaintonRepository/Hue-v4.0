@@ -30,7 +30,7 @@
 <div align="center">
   
 <h1 align="center"><b>Hue v4.0</b></h1>
-	<b>Warning This project is still very early in development.</b>
+	<b>Warning This project is still in development so not everything may be working currently or just doesn't exist yet.</b>
 
   <p align="center">
     Hue v4 is a continuation of my Hue Project, expanding it to more services such as Minecraft, Steam, And Roblox.
@@ -67,11 +67,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Hue v4.0 is a discord bot which allows servers which need to verify the users who are joining their servers with their relevant account, for example: `Garry's mod or other Steam Game community needs to verify that a user is indeed a steam account` or `A Roblox community needs a user to verify as their roblox account` and lastly `A minecraft server needs to verify a user as their minecraft account` The only limitation of this (currently) is you can only have one service enabled per discord server.
+Hue v4.0 is a discord bot which allows servers which need to verify the users who are joining their servers with their relevant account.
 
-Discord js v13 and not v14? Discord.js v14 absolutely sucks it takes simple things and makes it 10x harder by forcing a type or a new enum which you need to import when before it only required a string. Additonally `embed.setColor` requires `0xcode` now? instead of `"#code"` what?
+Currently the bot is planned to support `Minecraft`, `Roblox`, and `Steam` on release with some additional verification methods planned in the future.
 
-Additionally this bot was designed to work in the Pterodactyl panel so there may be some features which may or may not break without it, I still need to figure out what to add to the readme as I am still working on this and its still very early
+How does it work? For the Discord bot side we're using the Discord.js v13 library. I am not planning to upgrade to v14 as its really bad. For the Minecraft verification I will be using a custom made plugin and minecraft server which have not been finished yet. For Steam I will probably use the [`Login With Steam`](https://partner.steamgames.com/doc/webapi_overview/oauth) API thingy. And lastely for roblox I will be doing description verification. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
