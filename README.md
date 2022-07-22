@@ -142,7 +142,10 @@ Distributed under the Apache 2.0 License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-[@ItzRock_](https://twitter.com/ItzRock_)
+If you have found a bug or would like a feature the best way to get in contact is using the [Issues](/issues) or [Pull requests](/pulls) tabs on the repo.
+For any other questions or concerns unrealated to Hue, via one of the following methods
+
+1. [Twitter: @ItzRock_](https://twitter.com/ItzRock_)
 
 Project Link: [https://github.com/ItzRock/Hue-v4.0](https://github.com/ItzRock/Hue-v4.0)
 

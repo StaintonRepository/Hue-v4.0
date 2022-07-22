@@ -4,7 +4,7 @@
   "description": "Hue JavaScript-based Discord bot",
   "main": "./src/index.js",
   "repository": "https://github.com/ItzRock/Hue-v4.0",
-  "author": "imskyyc & Anthony",
+  "author": "Anthony",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
