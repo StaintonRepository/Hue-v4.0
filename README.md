@@ -95,7 +95,7 @@ To get a local copy up and running follow these simple example steps.
 3. Clone and fill out the `configuration.toml` file. (refer to the `configuration template.toml` for the most up to date template)
 	```toml
 	[Client]
-  TOKEN = "SuperSecretToken"
+  	TOKEN = "SuperSecretToken"
 	BOT_ADMINISTRATION = [ 
 	"@[USER_ID]",
 	]
