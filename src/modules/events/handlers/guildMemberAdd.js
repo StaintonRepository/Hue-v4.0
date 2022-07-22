@@ -19,24 +19,7 @@ module.exports = async (client, member) => {
 		if(channel){
 			let text = settings.get("4").value;
 
-			// Yes I know not all are documented but I'm lazy (thanks co pilot for giving me all these variables)
-			// Also yes I could use a loop here which I may add in the future but for now its like... not terrible. but its also not super efficient.
-			text = client.replaceAll(text, "{{user}}", member.user);
-			text = client.replaceAll(text, "{{username}}", member.user.username);
-			text = client.replaceAll(text, "{{guild}}", guild.name);
-			text = client.replaceAll(text, "{{server}}", guild.name);
-			text = client.replaceAll(text, "{{owner}}", client.users.cache.get(guild.ownerID));
-			text = client.replaceAll(text, "{{membercount}}", guild.memberCount);
-			text = client.replaceAll(text, "{{rules}}", guild.rulesChannel ? guild.rulesChannel.toString() : "No Rules Channel Found.");
-			text = client.replaceAll(text, "{{channels}}", guild.channels.cache.size);
-			text = client.replaceAll(text, "{{roles}}", guild.roles.cache.size);
-			text = client.replaceAll(text, "{{id}}", guild.id);
-			text = client.replaceAll(text, "{{region}}", guild.region);
-
-			// Image vars
-			text = client.replaceAll(text, "{{icon}}", guild.iconURL({ format: "png", size: 1024, dynamic: true }));
-			text = client.replaceAll(text, "{{icon_url}}", guild.iconURL({ format: "png", size: 1024, dynamic: true }));
-			text = client.replaceAll(text, "{{user_avatar}}", member.user.avatarURL({ format: "png", size: 1024, dynamic: true }));
+			text = client.Modules.get("variables").get(text, guild, member);
 
 			if(text.includes("[embed]")){
 				const flagsRaw = text.split("--");
@@ -62,7 +45,8 @@ module.exports = async (client, member) => {
 				} else if(flagsRaw.includes("premade_verify")){
 					channel.send({ embeds: [embedOverride] });
 				} else {
-					const embed = new MessageEmbed();
+					const embed = new MessageEmbed()
+						.setTitle("Blank Embed. Uh.. looks like the embed is blank.");
 					const flags = [];
 					for(const flag of flagsRaw){
 						const args = flag.split(" ");

@@ -9,6 +9,10 @@ const { Routes } = require("discord-api-types/v9");
 module.exports = (client) => {
 	// god I hate slash commands.
 	client.rawCommands = new Map();
+	client.categories = {
+		descriptions: new Map(),
+	};
+
 
 	const functions = {
 		runEachCommand: async (callback) => {
@@ -24,14 +28,18 @@ module.exports = (client) => {
 		},
 		load: async (name, category) => {
 			const rawData = require(`./categories/${category}/${name}`);
-			let returnedData = rawData;
-			if(typeof(rawData) == "function") {
-				returnedData = await rawData(client);
+			if(name == "description.json"){
+				client.categories.descriptions.set(category, rawData);
+			} else {
+				let returnedData = rawData;
+				if(typeof(rawData) == "function") {
+					returnedData = await rawData(client);
+				}
+				
+				const data = returnedData.config.data;
+				client.Commands.cache.set(data.name, returnedData);
+				client.rawCommands.set(data.name, data.toJSON());
 			}
-			
-			const data = returnedData.config.data;
-			client.Commands.cache.set(data.name, returnedData);
-			client.rawCommands.set(data.name, data.toJSON());
 		},
 		unload: (name) => {
 			client.Commands.cache.delete(name);

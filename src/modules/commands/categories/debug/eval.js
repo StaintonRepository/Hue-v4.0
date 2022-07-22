@@ -28,11 +28,12 @@ module.exports = {
 				const messageSettings = {
 					content: interaction.emojis.x + " `Failed!`",
 					files: [{
-						name: "eval.xl",
+						name: "eval.js",
 						attachment: new Buffer.from(await client.cleanText(client, error))
 					}]
 				};
-				interaction.reply(messageSettings);	
+				interaction.channel.send(messageSettings);
+				// We're not gonna reply to the interaction so that we can re submit the command	
 			}
 		}
 	},

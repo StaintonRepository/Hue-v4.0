@@ -392,7 +392,7 @@ module.exports = (client) => {
 				.setName(filename)
 				.setDescription("Edit your server configuration")
 				.setDMPermission(false)
-				.setDefaultMemberPermissions("0")
+				.setDefaultMemberPermissions(0)
 				.addSubcommand(edit =>
 					edit.setName("edit")
 						.setDescription("Edit a specific key of the server config.")

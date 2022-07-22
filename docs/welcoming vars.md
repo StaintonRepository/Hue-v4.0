@@ -1,3 +1,5 @@
+# Warning this is outdated and is moving to the wiki
+
 First a warning because I am so terrible at explaining things (free credits if you submit a pull request of this remade)
 
 In Hue v4.0 welcoming text has much more variables than before.
