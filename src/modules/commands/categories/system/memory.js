@@ -20,12 +20,12 @@ module.exports = {
 		const percentage = Math.floor(((os.totalmem() - os.freemem()) / os.totalmem()) * 100);
 
 		const embed = new MessageEmbed()
-			.setTitle("Hue Memory Usage")
+			.setTitle(`${client.user.username} Memory Usage`)
 			.setColor("GREEN")
 			.addFields(
 				{name: "Memory Installed", value: `\`${total}\``, inline: true},
-				{name: "Memory Usage", value: `\`${usage}/${total} (${percentage})\``, inline: true},
-				{name: "Hue Used Memory", value: `\`${hueUsed}\``, inline: true},
+				{name: "Memory Usage", value: `\`${usage}/${total} (${percentage}%)\``, inline: true},
+				{name: `${client.user.username} Used Memory`, value: `\`${hueUsed}\``, inline: true},
 			)
 			.setFooter({
 				text: client.user.username,
