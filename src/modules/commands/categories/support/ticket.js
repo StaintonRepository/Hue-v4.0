@@ -32,12 +32,12 @@ module.exports = {
 			.addSubcommand(create => 
 				create.setName("create")
 					.setDescription("Create a ticket!")
-					.setDMPermission(true)
+					//.setDMPermission(true)
 			)
 			.addSubcommand(close =>
 				close.setName("close")
 					.setDescription("Close a ticket!")
-					.setDMPermission(true)
+					//.setDMPermission(true)
 					.addStringOption(option =>
 						option.setName("id")
 							.setDescription("The ID of the ticket")
