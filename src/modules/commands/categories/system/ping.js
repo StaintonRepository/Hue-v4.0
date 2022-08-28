@@ -28,7 +28,7 @@ module.exports = {
 			.setColor("GREEN")
 			.setDescription(description);
 			
-		msg.edit({embeds: [embed], content: null});
+		msg.editReply({embeds: [embed], content: null});
 
 	},
 	config: {
