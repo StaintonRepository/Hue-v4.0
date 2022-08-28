@@ -12,7 +12,7 @@ module.exports = {
 		const msg = await interaction.reply("Pinging...");
 		const ms = new Date() - interaction.createdTimestamp;
 		const beforeDB = new Date();
-		const db = await client.Modules.get("database").read("test", {id: "test"});
+		const db = await client.Modules.get("database").default.read("test", {id: "test"});
 		const afterDB = new Date();
 		let description = `Message response time: \`${ms}ms\`
 		Message time to send: \`${msg.createdTimestamp - interaction.createdTimestamp}ms\`
