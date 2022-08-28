@@ -28,7 +28,7 @@ module.exports = {
 			.setColor("GREEN")
 			.setDescription(description);
 			
-		msg.editReply({embeds: [embed], content: null});
+		interaction.editReply({embeds: [embed], content: null});
 
 	},
 	config: {
