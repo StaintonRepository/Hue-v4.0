@@ -3,7 +3,7 @@ const { MongoClient } = require("mongodb");
 module.exports = (client) => {
 	const url = client.Configuration.Database.MONGO_URI;
 	const dbName = client.Configuration.Database.MONGO_DB;
-
+	
 	const functions = {};
 	functions.read = (collection, query) => {
 		return new Promise((resolve, reject) => {
