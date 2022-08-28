@@ -34,3 +34,7 @@ for(const filename of modulesFolder){
 
 // Login to the bot (if this parts errors create a .env and add TOKEN = "insert token here" )
 client.login(client.Configuration.Client.TOKEN);
+
+process.on("unhandledRejection", (error) => {
+	client.Logger.error(error);
+});
