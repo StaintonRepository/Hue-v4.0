@@ -9,16 +9,27 @@ module.exports = {
 	 * @param {import("discord.js").CommandInteraction} interaction 
 	 */
 	run: async (client, interaction) =>{
+		const msg = await interaction.reply("Pinging...");
 		const ms = new Date() - interaction.createdTimestamp;
+		const beforeDB = new Date();
+		const db = await client.Modules.get("database").read("test", {id: "test"});
+		const afterDB = new Date();
+		let description = `Message response time: \`${ms}ms\`
+		Message time to send: \`${msg.createdTimestamp - interaction.createdTimestamp}ms\`
+		${client.user.username} Database Connection: \`${afterDB - beforeDB}ms\`
+		API response time: \`${Math.round(client.ws.ping)}ms\`;
+
+		`;
 		const embed = new MessageEmbed()
 			.setTimestamp()
 			.setAuthor({name: client.user.username, iconURL: client.user.avatarURL()})
 			.setFooter({text: client.user.username, iconURL: client.user.avatarURL()})
 			.setTitle("🏓Pong!")
 			.setColor("GREEN")
-			.setDescription(`${client.user.username} Connection to Discord: \`${ms}ms\``);
+			.setDescription(description);
 			
-		interaction.reply({embeds: [embed]});
+		msg.edit({embeds: [embed], content: null});
+
 	},
 	config: {
 		adminOnly: false,
