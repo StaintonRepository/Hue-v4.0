@@ -1,16 +1,6 @@
 const fs = require("fs");
 module.exports = async (client) => {
-	client.randomStatus = [
-		"with a firearm.",
-		"NEKOPARA Vol. 1",
-		"Minecraft",
-		"Counter-Strike: Global Offensive",
-
-	];
-
-	// Do a interval because I find after a while the status likes to fuck off for no reason
-	client.activeStatus = client.randomStatus[Math.floor(Math.random() * client.randomStatus.length)];
-
+	client.activeStatus = "for commands";
 	client.minutesPerStatus = 5;
 
 	let gitCommitHead = "Pending / Unknown";
@@ -19,16 +9,16 @@ module.exports = async (client) => {
 		fs.readFile("./.git/FETCH_HEAD", "utf8", (err, data) =>{
 			gitCommitHead = data.slice(0,8);
 			client.gitData = gitCommitHead;
-			client.user.setActivity(`${client.activeStatus} | git ${gitCommitHead}`, {type: "PLAYING"});
+			client.user.setActivity(`${client.activeStatus} | git ${gitCommitHead}`, {type: "WATCHING"});
 		});	
 	} catch (error) {
-		client.user.setActivity(`${client.activeStatus} | git ${gitCommitHead}`, {type: "PLAYING"});
+		client.user.setActivity(`${client.activeStatus} | git ${gitCommitHead}`, {type: "WATCHING"});
 	}
 
 
-	client.user.setActivity(`${client.activeStatus} | git ${gitCommitHead}`, {type: "PLAYING"});
+	client.user.setActivity(`${client.activeStatus} | git ${gitCommitHead}`, {type: "WATCHING"});
 	setInterval(function(){
-		client.user.setActivity(`${client.activeStatus} | git ${gitCommitHead}`, {type: "PLAYING"});
+		client.user.setActivity(`${client.activeStatus} | git ${gitCommitHead}`, {type: "WATCHING"});
 	}, client.minutesPerStatus * 6000);
 	client.Logger.ready(`Logged On As: ${client.user.tag}`);
 	client.Modules.get("cli").prompt();
