@@ -147,7 +147,7 @@ For any other questions or concerns unrealated to Hue, via one of the following 
 
 1. [Twitter: @ItzRock_](https://twitter.com/ItzRock_)
 2. [Email: Anthony2Stainton@gmail.com](mailto://anthony2stainton@gmail.com)
-3. [Discord: Anthоny#0001](https://discord.gg/QwgnZ83XD3)
+3. [Discord: Anthоny#0001](https://discord.gg/stainton)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
