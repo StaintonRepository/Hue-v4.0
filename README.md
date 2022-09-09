@@ -146,7 +146,7 @@ If you have found a bug or would like a feature the best way to get in contact i
 For any other questions or concerns unrealated to Hue, via one of the following methods
 
 1. [Twitter: @ItzRock_](https://twitter.com/ItzRock_)
-2. [Email: Anthony2Stainton@gmail.com](mailto://anthony2stainton@gmail.com)
+2. [Email: anthonystainton+contact@gmail.com](mailto://anthonystainton+contact@gmail.com)
 3. [Discord: Anthоny#0001](https://discord.gg/stainton)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
