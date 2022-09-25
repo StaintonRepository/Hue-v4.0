@@ -4,26 +4,28 @@ module.exports = (client) => {
 	const url = client.Configuration.Database.MONGO_URI;
 	const dbName = client.Configuration.Database.MONGO_DB;
 	
-	const functions = {};
-	functions.read = (collection, query) => {
+	const functions = { db: null, client: null };
+	functions.connect = () => {
 		return new Promise((resolve, reject) => {
-			MongoClient.connect(url, (err, mongoClient) => {
+			MongoClient.connect(url, { useUnifiedTopology: true }, (err, client) => {
 				if(err) reject(err);
-				if(mongoClient.db == undefined) {
-					reject(false);
-					client.Logger.log("WARNING - Database connection failed.");
-					if(mongoClient.close)
-						return mongoClient.close();
+				else {
+					functions.client = client;
+					functions.db = client.db(dbName);
+					resolve();
 				}
-				const db = mongoClient.db(dbName);
-				db.collection(collection).find(query).toArray((err, result) => {
-					if(err) reject(err);
-					resolve(result);
-					return mongoClient.close(); // VERY IMPORTANT because if you dont close the client memory leaks start to occur. (learnt that the hard way)
-				});
 			});
 		});
 	};
+	functions.read = (collection, query) => {
+		return new Promise((resolve, reject) => {
+			functions.db.collection(collection).find(query).toArray((err, result) => {
+				if(err) reject(err);
+				else resolve(result);
+			});
+		});
+	};
+
 	functions.remove = (collection, query) => {
 		return new Promise((resolve, reject) => {
 			MongoClient.connect(url, (err, mongoClient) => {
