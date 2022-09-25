@@ -1,26 +1,14 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 /*
 	Hue v4.0
 	Made by Anthony
 
 */
-const { Client, GatewayIntentBits, Partials } = require("discord.js");
+const { Client } = require("discord.js");
 const fs = require("fs");
 
 const client = new Client({
 	intents: [
-		GatewayIntentBits.DIRECT_MESSAGES,
-		GatewayIntentBits.GUILDS,
-		GatewayIntentBits.GUILD_BANS,
-		GatewayIntentBits.GUILD_MEMBERS,
-		GatewayIntentBits.GUILD_MESSAGES,
-	],
-	partials: [
-		Partials.Channel,
-		Partials.User,
-		Partials.GuildMember,
-		Partials.Message,
-		Partials.ThreadMember
+		"DIRECT_MESSAGES", "GUILDS", "GUILD_BANS", "GUILD_INTEGRATIONS", "GUILD_MEMBERS", "GUILD_MESSAGES"
 	],
 	allowedMentions: {
 		// incase we want to just parse it through the bot. 
@@ -41,7 +29,12 @@ for(const filename of modulesFolder){
 	const mod = require(`./modules/${filename}`)(client);
 	client.Modules.set(modName, mod);
 }
-client.login(client.Configuration.Client.TOKEN);
+
+// Connect to Database.
+client.Logger.log("Connecting to Database.");
+client.Modules.get("database").connect();
+
+client.login(client.Configuration.TOKEN);
 
 process.on("unhandledRejection", (error) => {
 	client.Logger.error(error);

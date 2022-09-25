@@ -24,7 +24,7 @@ module.exports = async (client) => {
 	client.Modules.get("cli").prompt();
 
 	// Read the configuration and parse who the bot administrators are.
-	const data = client.Configuration.Client.BOT_ADMINISTRATION;
+	const data = client.Configuration.BOT_ADMINISTRATION;
 	client.Administration = [];
 	if(data){
 		if(data.length <= 0) client.Logger.warn("There are no bot administrators configured in the configuration");

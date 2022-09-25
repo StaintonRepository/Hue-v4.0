@@ -18,8 +18,8 @@ module.exports = (client, dbFunctions) => {
 		return dbFunctions.update("server_settings", {GuildID: id}, {$set: { Settings: newValues}}).then((data)=> {return data;});
 	};
 	functions.get = (id) => {
-		if (functions.cache.has(id)) return functions.cache.get(id);
-		else {
+		//if (functions.cache.has(id)) return functions.cache.get(id);
+		/*else*/ {
 			return dbFunctions.read("server_settings", { GuildID: id}).then((data) => {
 				if(data.length == 0) {
 					functions.create(id);

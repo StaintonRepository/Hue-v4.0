@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 const { MongoClient } = require("mongodb");
 module.exports = (client) => {
-	const url = client.Configuration.Database.MONGO_URI;
-	const dbName = client.Configuration.Database.MONGO_DB;
+	const url = client.Configuration.Database.Host;
+	const dbName = client.Configuration.Database.Database;
 	
 	const functions = { db: null, client: null };
 	functions.connect = () => {
@@ -28,46 +28,32 @@ module.exports = (client) => {
 
 	functions.remove = (collection, query) => {
 		return new Promise((resolve, reject) => {
-			MongoClient.connect(url, (err, mongoClient) => {
+			functions.db.collection(collection).deleteOne(query, (err, result) => {
 				if(err) reject(err);
-				const db = mongoClient.db(dbName);
-				db.collection(collection).deleteOne(query, (err, result) => {
-					if(err) reject(err);
-					resolve(result);
-					return mongoClient.close(); // VERY IMPORTANT because if you dont close the client memory leaks start to occur. (learnt that the hard way)
-				});
+				resolve(result);
 			});
 		});
 	};
 	functions.update = (collection, query, newValues) => {
 		return new Promise((resolve, reject) => {
-			MongoClient.connect(url, (err, mongoClient) => {
+			functions.db.collection(collection).updateOne(query, newValues, (err, result) => {
 				if(err) reject(err);
-				const db = mongoClient.db(dbName);
-				db.collection(collection).updateOne(query, newValues, (err, result) => {
-					if(err) reject(err);
-					resolve(result);
-					return mongoClient.close(); // VERY IMPORTANT because if you dont close the client memory leaks start to occur. (learnt that the hard way)
-				});
+				resolve(result);
 			});
 		});
 	};
 	functions.write = (collection, data) => {
 		return new Promise((resolve, reject) => {
-			MongoClient.connect(url, (err, mongoClient) => {
+			functions.db.collection(collection).insertOne(data, (err, result) => {
 				if(err) reject(err);
-				const db = mongoClient.db(dbName);
-				db.collection(collection).insertOne(data, (err, result) => {
-					if(err) reject(err);
-					resolve(result);
-					return mongoClient.close(); // VERY IMPORTANT because if you dont close the client memory leaks start to occur. (learnt that the hard way)
-				});
+				resolve(result);
 			});
 		});
 	};
 
 	const Setting = require("./classes/Setting");
 	return {
+		connect: functions.connect,
 		default: functions,
 		default_settings: [
 			new Setting(0, "Logging Channel", "A channel to send logs.", "", true, "channel", "General"),

@@ -3,10 +3,8 @@
     Hue v4.0
     Made by Anthony
 
-    Before you run the bot make sure you have a ".env" file with 'TOKEN = "insert token here" ' to prevent running into errors
 */
 const { Client } = require("discord.js");
-require("toml-require").install();
 const fs = require("fs");
 const client = new Client({
     intents: [
@@ -17,7 +15,7 @@ const client = new Client({
     // parse: ["everyone", "roles"]
     }
 });
-client.Configuration = require("../configuration.toml");
+client.Configuration = require("./configuration.json");
 // Load directly the logger because thats important lol!
 client.Logger = require("./modules/Logger")(client);
 // Load the modules.
@@ -29,8 +27,10 @@ for (const filename of modulesFolder) {
     const mod = require(`./modules/${filename}`)(client);
     client.Modules.set(modName, mod);
 }
-// Login to the bot (if this parts errors create a .env and add TOKEN = "insert token here" )
-client.login(client.Configuration.Client.TOKEN);
+// Connect to Database.
+client.Logger.log("Connecting to Database.");
+client.Modules.get("database").connect();
+client.login(client.Configuration.TOKEN);
 process.on("unhandledRejection", (error) => {
     client.Logger.error(error);
 });

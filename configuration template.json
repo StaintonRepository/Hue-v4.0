@@ -1,4 +1,5 @@
 // Rename this to "configuration.json" and put it in src/
+// Additionally remove all comments before starting
 {
 	// Get from https://discord.com/developers/applications
 	"TOKEN" : "super secret token",
