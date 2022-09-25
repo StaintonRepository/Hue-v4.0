@@ -1,3 +1,4 @@
+// Rename this to "configuration.json" and put it in src/
 {
 	// Get from https://discord.com/developers/applications
 	"TOKEN" : "super secret token",
