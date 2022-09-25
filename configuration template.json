@@ -1,0 +1,31 @@
+{
+	// Get from https://discord.com/developers/applications
+	"TOKEN" : "super secret token",
+	"BOT_ADMINISTRATION" : [ 
+		"#[GUILD_ID]-&[ROLE_ID]",
+		"@[USER_ID]",
+		"#[GUILD_ID]"
+	],
+	"Emojis" : {
+		"check" : "✅",
+		"ex" : "❗",
+		"x" : "❌",
+		"customExample" : "<:customExample:123456789012345678>"
+	},
+	// Logging important things like errors and server joins.
+	"Channels" : {
+		"DevLogs" : "123456789012345678"
+	},
+	"Database" : {
+		// mysql or mongodb
+		"Type" : "mysql OR mongodb", 
+
+		// For mongodb just put the connection string here. ignore the rest.
+		"Host" : "https://example.com",
+		// For mysql
+		"Port" : 0,
+		"User" : "username",
+		"Password" : "password",
+		"Database" : "database"
+	}
+}
