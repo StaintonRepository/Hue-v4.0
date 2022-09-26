@@ -4,21 +4,18 @@ module.exports = {
 		"es2021": true,
 		"node": true
 	},
-	"extends": [
-		"eslint:recommended",
-		//"plugin:@typescript-eslint/recommended"
-	],
-	//"parser": "@typescript-eslint/parser",
+	"extends": "eslint:recommended",
 	"parserOptions": {
 		"ecmaVersion": "latest"
 	},
-	"plugins": [
-		//"@typescript-eslint"
-	],
 	"rules": {
 		"indent": [
 			"error",
 			"tab"
+		],
+		"linebreak-style": [
+			"error",
+			"windows"
 		],
 		"quotes": [
 			"error",

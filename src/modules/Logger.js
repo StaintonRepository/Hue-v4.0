@@ -6,7 +6,6 @@ module.exports = (client) => {
 		const timestamp = `[${moment().format("YYYY-MM-DD HH:mm")}]:`;
 		const message = `${timestamp} ${colour(type.toUpperCase())} ${content} `;
 		//const discordMessage = `${timestamp} ${(type.toUpperCase())} ${content} `; // If you want to post it in a channel or something
-        
 		return console.log(message);
 	}
 	
