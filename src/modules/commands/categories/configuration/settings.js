@@ -275,6 +275,7 @@ module.exports = (client) => {
 				const collector = interaction.channel.createMessageCollector({filter, time: 120000, max: 1});
 				collector.on("collect", msg => {
 					collector.stop();
+					completed = true;
 					if(msg.content.toLocaleLowerCase() == "cancel"){
 						msg.reply("Cancelled");
 					} else if(msg.content.toLocaleLowerCase() == "none")

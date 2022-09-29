@@ -9,7 +9,7 @@ module.exports = {
 	 * @param {import("discord.js").CommandInteraction} interaction 
 	 */
 	run: async (client, interaction) =>{
-		interaction.reply("Pinging...");
+		await interaction.reply("Pinging...");
 		const ms = new Date() - interaction.createdTimestamp;
 		const beforeDB = new Date();
 		const db = await client.Modules.get("database").default.read("test", {id: "test"});
