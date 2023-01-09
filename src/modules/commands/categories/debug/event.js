@@ -9,21 +9,22 @@ module.exports = {
 	 * @param {import("discord.js").CommandInteraction} interaction 
 	 */
 	run: async (client, interaction) =>{
-		const allowedEvents = [
-			"guildMemberAdd",
-			"guildMemberRemove",
-		];
-
+		const argumentTable = {
+			"guildMemberAdd":  [interaction.member],
+			"guildMemberRemove": [interaction.member],
+			"guildCreate": [interaction.guild],
+			"guildDelete": [interaction.guild],
+		};
 		const event = interaction.options.getString("event", true);
 		if(event){
-			if(allowedEvents.includes(event)){
+			if(Object.keys(argumentTable).includes(event)){
 				const embed = new MessageEmbed()
 					.setTitle(`${event} Event`)
 					.setColor("#00ff00")
 					.setDescription(`The ${event} event has been triggered.`);
 				await interaction.reply({embeds: [embed]});
 
-				client.emit(event, interaction.member);
+				client.emit(event, ...argumentTable[event]);
 			}else{
 				const embed = new MessageEmbed()
 					.setTitle("Event")
@@ -46,7 +47,13 @@ module.exports = {
 				event.setName("event")
 					.setDescription("The event to run")
 					.setRequired(true)
-					.addChoices({name: "guildMemberAdd", value: "guildMemberAdd", description: "Simulates a guild member joining"}, {name: "guildMemberRemove", value: "guildMemberRemove", description: "Simulates a guild member leaving"})
+					.addChoices(
+						{name: "guildMemberAdd", value: "guildMemberAdd", description: "Simulates a guild member joining"}, 
+						{name: "guildMemberRemove", value: "guildMemberRemove", description: "Simulates a guild member leaving"},
+						{name: "guildCreate", value: "guildCreate", description: "Simulates a guild creation event."},
+						{name: "guildDelete", value: "guildDelete", description: "Simulates a guild deletion event."},
+						
+					)
 
 			)
 	}

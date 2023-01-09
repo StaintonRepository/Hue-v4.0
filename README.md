@@ -30,7 +30,7 @@
 <div align="center">
   
 <h1 align="center"><b>Hue v4.0</b></h1>
-	<b>Warning This project is still in development so not everything may be working currently or just doesn't exist yet.</b>
+	<b>Warning This project is still in development so not everything may be working currently or just doesn't exist yet. (and also is gonna be remade later on into typescript lol)</b>
 
   <p align="center">
     Hue v4 is a continuation of my Hue Project, expanding it to more services such as Minecraft, Steam, And Roblox.

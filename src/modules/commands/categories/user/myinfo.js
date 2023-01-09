@@ -11,6 +11,8 @@ module.exports = {
 	run: async (client, interaction) =>{
 		await interaction.reply("Collecting Database Information...");
 		
+		const steamInformation = client.Modules.get("database").getSteamInformation(interaction.user.id);
+
 		const embed = new MessageEmbed()
 			.setTimestamp()
 			.setAuthor({name: client.user.username, iconURL: client.user.avatarURL(), dynmaic: true})
