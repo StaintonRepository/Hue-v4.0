@@ -15,7 +15,6 @@
     "discord.js": "^13.9.0",
     "moment": "^2.29.3",
     "mongodb": "^4.8.0",
-    "mysql2": "^2.3.3",
     "toml": "^3.0.0"
   },
   "devDependencies": {
